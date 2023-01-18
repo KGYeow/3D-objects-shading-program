@@ -18,21 +18,21 @@ function floorTexture(texType)
         textureTurnOnOff(0, true);
 
         // Nature Texture.
-        if(texType == 1) image.src = "../imgs/grass-texture.jpg";               // If it is grass texture.
-        else if (texType == 2) image.src = "../imgs/ocean-texture.jpg";         // If it is ocean texture.
-        else if (texType == 3) image.src = "../imgs/sand-texture.jpg";          // If it is sand texture.
-        else if (texType == 4) image.src = "../imgs/snow-texture.jpg";          // If it is snow texture.
-        else if (texType == 5) image.src = "../imgs/moon-texture.jpg";          // If it is moon texture.
-        else if (texType == 6) image.src = "../imgs/soil-texture.jpg";          // If it is soil texture.
-        else if (texType == 7) image.src = "../imgs/cracked-ground-texture.jpg";// If it is cracked ground texture.
+        if(texType == 1) image.src = "/imgs/grass-texture.jpg";               // If it is grass texture.
+        else if (texType == 2) image.src = "/imgs/ocean-texture.jpg";         // If it is ocean texture.
+        else if (texType == 3) image.src = "/imgs/sand-texture.jpg";          // If it is sand texture.
+        else if (texType == 4) image.src = "/imgs/snow-texture.jpg";          // If it is snow texture.
+        else if (texType == 5) image.src = "/imgs/moon-texture.jpg";          // If it is moon texture.
+        else if (texType == 6) image.src = "/imgs/soil-texture.jpg";          // If it is soil texture.
+        else if (texType == 7) image.src = "/imgs/cracked-ground-texture.jpg";// If it is cracked ground texture.
 
         // Material Texture.
-        else if (texType == 8) image.src = "../imgs/paper-texture.jpg";         // If it is paper texture.
-        else if (texType == 9) image.src = "../imgs/wooden-board-texture.jpg";  // If it is wooden board texture.
-        else if (texType == 10) image.src = "../imgs/brick-texture.jpg";         // If it is brick texture.
-        else if (texType == 11) image.src = "../imgs/silver-texture.jpg";       // If it is silver texture.
-        else if (texType == 12) image.src = "../imgs/gold-texture.jpg";         // If it is gold texture.
-        else if (texType == 13) image.src = "../imgs/concrete-texture.jpg";// If it is concrete texture.
+        else if (texType == 8) image.src = "/imgs/paper-texture.jpg";         // If it is paper texture.
+        else if (texType == 9) image.src = "/imgs/wooden-board-texture.jpg";  // If it is wooden board texture.
+        else if (texType == 10) image.src = "/imgs/brick-texture.jpg";         // If it is brick texture.
+        else if (texType == 11) image.src = "/imgs/silver-texture.jpg";       // If it is silver texture.
+        else if (texType == 12) image.src = "/imgs/gold-texture.jpg";         // If it is gold texture.
+        else if (texType == 13) image.src = "/imgs/concrete-texture.jpg";// If it is concrete texture.
 
         // Logo Texture.
         else if (texType == 20) image.src = "../imgs/USM-logo-texture.jpg";     // If it is USM logo texture.
