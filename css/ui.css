@@ -1,0 +1,228 @@
+/********************************************************************/
+/*  ===== Body Element =====
+
+    This section set up the body element.
+*/
+body
+{
+    margin             : 0;
+    padding            : 0;
+}
+/********************************************************************/
+
+/********************************************************************/
+/*  ===== Navigation Bar =====
+
+    This section set up the content of the navigation bar.
+*/
+.nav-bar
+{
+    background-color: #0077b6;
+    color           : white;
+    position        : relative;
+    height          : 65px;
+    width           : 100%;
+    font-family     :'Segoe UI';
+    box-shadow      : 0px 2px 5px  0px rgba(0, 0, 0, 0.3),
+                      0px 2px 2px -1px rgba(0, 0, 0, 0.15);
+    overflow        : hidden;
+}
+
+.nav-bar .logo
+{
+    position    : absolute;
+    padding-left: 15px;
+}
+
+.nav-bar .header
+{
+    position        : absolute;
+    margin          : 0px 0px 0px 90px;
+    line-height     : 65px;
+}
+
+.nav-bar button
+{
+    background-color: #00b4d8;
+    border          : none;
+    border-radius   : 50%;
+    position        : relative;
+    float           : right;
+    margin          : 7.5px 15px;
+    padding         : 0px;
+    height          : 50px;
+    width           : 50px;
+    transition      : 0.3s;
+    cursor          : pointer;
+    box-shadow      : 0px 2px 5px  0px rgba(0, 0, 0, 0.3),
+                      0px 2px 2px -1px rgba(0, 0, 0, 0.15);
+    animation       : rotation 3s linear infinite;
+}
+
+.nav-bar button:hover
+{
+    background-color: #7cd8e8;
+    opacity         : 1;
+    transform       : scale(1.1);
+}
+
+.nav-bar button img
+{
+    height          : 30px;
+    width           : 30px;
+    filter          : invert(1);
+}
+/********************************************************************/
+
+/********************************************************************/
+/*  ===== Page =====
+
+    This section set up the content of the page.
+*/
+.page
+{
+    background-image : url("../imgs/background.png");
+    background-size  : cover;
+    background-repeat: no-repeat;
+    position         : absolute;
+    top              : 65px;
+    height           : 100%;
+    width            : 100%;
+    overflow         : hidden;
+    z-index          : -1;
+}
+/********************************************************************/
+
+/********************************************************************/
+/*  ===== Canvas =====
+
+    This section set up the content of the canvas.
+*/
+.canvas-container
+{
+    position    : absolute;
+    top         : 60px;
+    right       : 15px;
+    animation   : appear-layout 0.3s linear;
+}
+
+/* Attribute of the canvas. */
+#gl-canvas
+{
+    border    : 5px solid #023e8a;
+    box-shadow: 0px 2px 5px  0px rgba(0, 0, 0, 0.3),
+                0px 2px 2px -1px rgba(0, 0, 0, 0.15);
+}
+
+.canvas-shading-control
+{
+    display         : flex;
+    justify-content: center;
+    position        : absolute;
+    margin          : auto;
+    width           : 835px;
+    top             : 5px;
+}
+
+.shading-type-list,
+.light-type-list,
+.light-turn-on-off,
+.texture-type-list-section
+{
+    display         : block;
+    margin          : 5px;
+    width           : fit-content;
+    font-family     :'Segoe UI';
+    font-size       : smaller;
+    font-weight     : 500;
+}
+
+.shading-type-list
+{
+    width: 140px !important;
+}
+
+.light-type-list
+{
+    width: 120px !important;
+}
+
+.light-turn-on-off
+{
+    background-color: rgb(245, 245, 245);
+    border          : none;
+    border-bottom   : 2px solid darkgray;
+    border-radius   : 5px;
+    padding         : 5px;
+    height          : 19.2px;
+}
+
+.point-dist-light-turn-on-off,
+.spot-light-turn-on-off
+{
+    float       : left;
+    margin-right: 5px;
+    margin-left : 5px;
+}
+
+.texture-type-list-section
+{
+    display         : flex;
+    background-color: rgb(245, 245, 245);
+    border-bottom   : 2px solid darkgray;
+    border-radius   : 5px;
+}
+
+.texture-type-list-section label
+{
+    margin: auto;
+    margin-left: 10px;
+}
+
+.texture-type-list
+{
+    width           : 120px !important;
+    font-weight     : 500;
+    border-bottom   : none !important;
+    border-radius   : none !important;
+}
+
+.texture-type-list:disabled
+{
+    background-color: lightgray;
+}
+/********************************************************************/
+
+/********************************************************************/
+/*  ===== Footer =====
+
+    This section set up the content of the footer.
+*/
+.footer
+{
+    background-color: #0077b6;
+    color           : white;
+    display         : block;
+    position        : absolute;
+    bottom          : -275px;
+    padding         : 10px 0 0 0;
+    height          : 200px;
+    width           : 100%;
+    font-family     :'Segoe UI';
+    overflow        : hidden;
+}
+
+.footer .footer-copyright
+{
+    background-color: #023e8a;
+    position        : absolute;
+    padding         : 10px 0;
+    bottom          : 0;
+    width           : 100%;
+}
+
+.footer .footer-copyright span
+{
+    padding: 0 10px;
+}
+/********************************************************************/

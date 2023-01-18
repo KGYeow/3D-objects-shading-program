@@ -1,0 +1,371 @@
+/********************************************************************/
+/*  ===== Scroll Bar =====
+
+    This section set up the scroll bar.
+*/
+::-webkit-scrollbar
+{
+    width: 15px;
+}
+
+::-webkit-scrollbar-track
+{
+    background-color: #f1f1f1;
+    border-radius   : 50px;
+}
+
+::-webkit-scrollbar-thumb
+{
+    background-color: #48cae4;
+    border-radius   : 50px;
+}
+
+::-webkit-scrollbar-thumb:hover
+{
+    background-color: #00b4d8;
+}
+/********************************************************************/
+
+/********************************************************************/
+/*  ===== Table Setting of Shading Control =====
+
+    This section set up the table setting layout for shading control.
+*/
+.table-header
+{
+    color           : white;
+    position        : absolute;
+    padding         : 5px;
+    width           : 620px;
+    top             : 15px;
+    left            : 15px;
+    font-family     :'Segoe UI';
+    font-size       : xx-large;
+    font-weight     : bold;
+    text-align      : center;
+    text-shadow     : 2px 2px 5px black;
+}
+
+.table-container
+{
+    position    : absolute;
+    margin      : 0;
+    padding     : 0;
+    height      : 655px;
+    top         : 70px;
+    left        : 15px;
+    font-family :'Segoe UI';
+    font-size   : smaller;
+    overflow-y  : scroll;
+}
+
+.table-setting
+{
+    width       : 620px;
+    animation   : appear-layout 0.3s linear;
+}
+
+.table-item
+{
+    background-color: white;
+    border-radius   : 5px;
+    vertical-align  : top;
+    padding         : 10px 20px;
+    font-weight     : 500;
+    box-shadow      : 0px 2px 5px  0px rgba(0, 0, 0, 0.3),
+                      0px 2px 2px -1px rgba(0, 0, 0, 0.15);
+}
+
+.table-item-title
+{
+    font-size   : larger;
+    font-family : Impact;
+}
+
+.light-modify-layout,
+.object-modify-layout
+{
+    animation: appear-layout 0.3s linear;
+}
+/********************************************************************/
+
+/********************************************************************/
+/*  ===== Colour & Colour Picker =====
+
+    This section set up the colour setting layout.
+*/
+.colour-setting
+{
+    list-style-type : none;
+    margin          : 0;
+    padding         : 0;
+}
+
+.colour-setting li
+{
+    border-bottom: 1px solid lightgray;
+    padding      : 5px 0 15px 0;
+    height       : 30px;
+}
+
+.colour-setting li:last-child
+{
+    border-bottom: none;
+}
+
+.colour-setting li .color-picker-setting span
+{
+    float         : left;
+    line-height   : 27px;
+    width         : 100px;
+}
+
+.colour-setting li .color-picker-setting .color-picker
+{
+    background-color: transparent;
+    border          : none;
+    float           : left;
+    cursor          : pointer;
+}
+
+.colour-setting .material-attrib:first-of-type
+{
+    margin-top: 5px;
+}
+
+.colour-setting .material-attrib .shininess,
+.colour-setting .material-attrib .material-colour-reflection-setting,
+.colour-setting .material-attrib .color-picker-setting
+{
+    float: left;
+    width: 50%;
+}
+
+.colour-setting .material-attrib .shininess
+{
+    width: 45%
+}
+
+.colour-setting .material-attrib .color-picker-setting
+{
+    margin-top: 6px;
+}
+/********************************************************************/
+
+/********************************************************************/
+/*  ===== Light Related Setting =====
+
+    This section set up the setting of the light position, rotation
+    and attribute table item.
+*/
+.light-pos-control
+{
+    position    : absolute;
+    float       : left;
+    width       : 50%;
+}
+
+.light-pos-control .light-pos,
+.spot-light-pos-control .spot-light-pos,
+.spot-light-rotate-control .spot-light-rotate
+{
+    margin-top   : 10px;
+    margin-bottom: 10px;
+}
+
+.spot-light-pos-control,
+.spot-light-rotate-control
+{
+    float   : left;
+    clear   : both;
+    width   : 50%;
+}
+
+.spot-light-rotate-control
+{
+    margin-top: 20px;
+}
+
+.spot-light-control .light-colour-attrib
+{
+    position    : absolute;
+    margin-top  : 50px;
+}
+
+.light-colour-attrib
+{
+    float       : left;
+    margin-left : 291px;
+}
+
+.light-colour-attrib li
+{
+    border-bottom: none;
+    padding: 0;
+}
+
+.light-colour-attrib li:first-of-type
+{
+    margin-top: 6px;
+}
+/********************************************************************/
+
+/********************************************************************/
+/*  ===== Camera Related Setting =====
+
+    This section set up the setting of the camera position and
+    orientation table item.
+*/
+.camera-pos-control,
+.camera-orient-control
+{
+    float: left;
+}
+
+.camera-orient-control
+{
+    margin-left: 60px;
+}
+
+.camera-pos-control .camera-pos,
+.camera-orient-control .camera-orient
+{
+    margin-top   : 10px;
+    margin-bottom: 10px;
+}
+/********************************************************************/
+
+/********************************************************************/
+/*  ===== Slider =====
+
+    This section set up the setting of the slider.
+*/
+.slider
+{
+    appearance      : none;
+    background-color: #6fe2ff;
+    border-radius   : 10px;
+    height          : 6px;
+    width           : 210px;
+    opacity         : 0.6;
+    transition      : 0.2s;
+}
+
+.slider::-webkit-slider-thumb
+{
+    -webkit-appearance: none;
+    appearance        : none;
+    background-color  : rgb(0, 150, 199);
+    border-radius     : 50%;
+    height            : 20px;
+    width             : 20px;
+    cursor            : pointer;
+}
+
+.slider:hover
+{
+    opacity: 1;
+}
+
+.slider-value
+{
+    position    : absolute;
+    padding-left: 5px;
+    font-weight : thin;
+}
+/********************************************************************/
+
+/********************************************************************/
+/*  ===== Menu List =====
+
+    This section set up the setting of the menu list.
+*/
+.light-type-list, .shading-type-list, .obj-list, .texture-type-list
+{
+    background-color: rgb(245, 245, 245);
+    border          : none;
+    border-bottom   : 2px solid darkgray;
+    border-radius   : 5px;
+    padding         : 5px;
+    width           : 150px;
+    font-family     :'Segoe UI';
+    cursor          : pointer;
+}
+
+.obj-list
+{
+    margin-left : 5px;
+    font-family :'Segoe UI';
+    font-weight : 500;
+}
+
+.select-obj
+{
+    position: absolute;
+    top     : 590px;
+    left    : 302px;
+}
+/********************************************************************/
+
+/********************************************************************/
+/*  ===== Toggle Switch =====
+
+    This section set up the setting of the toggle switch.
+*/
+.switch
+{
+    position: relative;
+    display : inline-block;
+    width   : 40px;
+    height  : 20px;
+}
+
+.switch input
+{
+    height  : 0;
+    width   : 0;
+    opacity : 0;
+}
+
+.slider-toggle
+{
+    background-color: #ccc;
+    border-radius   : 50px;
+    position        : absolute;
+    width           : inherit;
+    height          : inherit;
+    top             : 0;
+    left            : 0;
+    right           : 0;
+    bottom          : 0;
+    transition      : 0.2s;
+    -webkit-transition: 0.2s;
+    cursor          : pointer;
+}
+
+.slider-toggle::before
+{
+    background-color: white;
+    border-radius   : 50%;
+    position        : absolute;
+    content         : "";
+    height          : 12px;
+    width           : 12px;
+    left            : 4px;
+    bottom          : 4px;
+    transition      : 0.2s;
+    -webkit-transition: 0.2s;
+}
+
+.toggle:checked + .slider-toggle::before
+{
+    -webkit-transform: translateX(20px);
+    -ms-transform    : translateX(20px);
+    transform        : translateX(20px);
+}
+
+.toggle:checked + .slider-toggle
+{
+    background-color: rgb(0, 150, 199);
+}
+/********************************************************************/

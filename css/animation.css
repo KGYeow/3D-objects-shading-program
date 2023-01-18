@@ -1,0 +1,26 @@
+/********************************************************************/
+/*  ===== Animations =====
+
+    This section set up the animation.
+*/
+@keyframes rotation
+{
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes appear-layout
+{
+    0%
+    {
+        transform: rotateX(90deg) translateY(-50px);
+        opacity: 0;
+    }
+
+    100%
+    {
+        transform: rotateX(0deg) translateY(0px);
+        opacity: 1;
+    }
+}
+/********************************************************************/

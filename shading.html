@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv = "Content-Type" content = "text/html; charset = utf-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0"/>
+
+    <title>3D Objects Shading Program</title>
+    <link rel = "icon" type = "image/x-icon" href = "imgs/FavIcon.ico">
+
+    <script type = "text/javascript" src = "Common/webgl-utils.js"></script>
+    <script type = "text/javascript" src = "Common/initShaders.js"></script>
+    <script type = "text/javascript" src = "Common/MV.js"></script>
+    <script type = "text/javascript" src = "js/vertexShader.js"></script>
+    <script type = "text/javascript" src = "js/fragmentShader.js"></script>
+    <script type = "text/javascript" src = "js/texture.js"></script>
+    <script type = "text/javascript" src = "js/attribute.js"></script>
+    <script type = "text/javascript" src = "js/geometryRef.js"></script>
+    <script type = "text/javascript" src = "js/geometryObj.js"></script>
+    <script type = "text/javascript" src = "js/geometryTeapot.js"></script>
+    <script type = "text/javascript" src = "js/renderFunction.js"></script>
+    <script type = "text/javascript" src = "js/eventFunction.js"></script>
+    <script type = "text/javascript" src = "js/eventListener.js"></script>
+    <script type = "text/javascript" src = "js/windowOnload.js"></script>
+    
+    <link rel = "stylesheet" href = "css/ui.css">
+    <link rel = "stylesheet" href = "css/gui.css">
+    <link rel = "stylesheet" href = "css/animation.css">
+
+</head>
+
+<body>
+
+    <!-- Nagivation Bar -->
+    <div class = "nav-bar">
+
+        <a href = "#" class ="logo"><img src = "imgs/FavIcon.ico" alt = "CPC354 WebGL Assignment 1" height = "65px"></a>
+
+        <!-- Header section. -->
+        <h1 class = "header">3D Objects Shading Program</h1>
+
+        <!-- Button for background music. -->
+        <button id = "music_btn" value = "mute">
+            <img id = "music_img" src = "imgs/music-off.png">
+            <audio id = "bgMusic" muted = "true" loop>
+                <source src = "music/Mesmerizing Waves.mp3" type = "audio/mpeg">
+            </audio>
+        </button>
+
+    </div>
+
+    <!-- Page of content. -->
+    <div class = "page">
+
+        <!-- Header for the table of settings. -->
+        <header class = "table-header">Shading Control</header>
+
+        <!-- Container for the table of settings. -->
+        <div class = "table-container">
+
+            <!-- Display the menu list for objects. -->
+            <div class = "select-obj">
+                <select class = "obj-list" id = "obj">
+                    <option value = "1" selected>Cube</option>
+                    <option value = "2">Cylinder</option>
+                    <option value = "3">Sphere</option>
+                    <option value = "4">Pentagonal Prism</option>
+                    <option value = "5">Teapot</option>
+                </select>
+            </div>
+
+            <!-- Display a table of settings. -->
+            <table class = "table-setting" cellspacing = "10px">
+                <tr>
+                    <td class = "table-item">
+                        <div class = "camera-control">
+                            <div class = "camera-pos-control">
+                                <span class = "table-item-title">Camera Location</span>
+                                <div class = "camera-pos">
+                                    x :
+                                    <input class = "slider" id = "camera-pos-x" type = "range" min = "-10" max = "10" step = "0.01" value = "0">
+                                    <span class = "slider-value" id = "text-camera-pos-x"></span>
+                                </div>
+                                <div class = "camera-pos">
+                                    y :
+                                    <input class = "slider" id = "camera-pos-y" type = "range" min = "-10" max = "10" step = "0.01" value = "1">
+                                    <span class = "slider-value" id = "text-camera-pos-y"></span>
+                                </div>
+                                <div class = "camera-pos">
+                                    z :
+                                    <input class = "slider" id = "camera-pos-z" type = "range" min = "-10" max = "10" step = "0.01" value = "2">
+                                    <span class = "slider-value" id = "text-camera-pos-z"></span>
+                                </div>
+                            </div>
+                            <div class = "camera-orient-control">
+                                <span class = "table-item-title">Camera Orientation</span>
+                                <div class = "camera-orient">
+                                    x :
+                                    <input class = "slider" id = "camera-orient-x" type = "range" min = "0" max = "360" step = "0.1" value = "0">
+                                    <span class = "slider-value" id = "text-camera-orient-x"></span>
+                                </div>
+                                <div class = "camera-orient">
+                                    y :
+                                    <input class = "slider" id = "camera-orient-y" type = "range" min = "0" max = "360" step = "0.1" value = "0">
+                                    <span class = "slider-value" id = "text-camera-orient-y"></span>
+                                </div>
+                                <div class = "camera-orient">
+                                    z :
+                                    <input class = "slider" id = "camera-orient-z" type = "range" min = "0" max = "360" step = "0.1" value = "0">
+                                    <span class = "slider-value" id = "text-camera-orient-z"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class = "light-modify-layout" id = "point-dist-light-attrib">
+                    <td class = "table-item">
+                        <div class = "light-control">
+                            <div class = "light-pos-control">
+                                <span class = "table-item-title">Point / Distance Light Location</span>
+                                <div class = "light-pos">
+                                    x :
+                                    <input class = "slider" id = "light-x" type = "range" min = "-15" max = "15" step = "0.01" value = "0">
+                                    <span class = "slider-value" id = "text-light-x"></span>
+                                </div>
+                                <div class = "light-pos">
+                                    y :
+                                    <input class = "slider" id = "light-y" type = "range" min = "-15" max = "15" step = "0.01" value = "0">
+                                    <span class = "slider-value" id = "text-light-y"></span>
+                                </div>
+                                <div class = "light-pos">
+                                    z :
+                                    <input class = "slider" id = "light-z" type = "range" min = "-15" max = "15" step = "0.01" value = "10">
+                                    <span class = "slider-value" id = "text-light-z"></span>
+                                </div>
+                            </div>
+                            <ul class = "colour-setting light-colour-attrib">
+                                <span class = "table-item-title">Point / Distance Light Attribute</span>
+                                <li>
+                                    <div class = "color-picker-setting">
+                                        <span>Ambient Colour</span>
+                                        <input class = "color-picker" id = "light-ambient-color" type = "color" value = "#cccccc">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class = "color-picker-setting">
+                                        <span>Diffuse Colour</span>
+                                        <input class = "color-picker" id = "light-diffuse-color" type = "color" value = "#ffffff">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class = "color-picker-setting">
+                                        <span>Specular Colour</span>
+                                        <input class = "color-picker" id = "light-specular-color" type = "color" value = "#ffffff">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr class = "light-modify-layout" id = "spot-light-attrib">
+                    <td class = "table-item">
+                        <div class = "spot-light-control">
+                            <div class = "spot-light-pos-control">
+                                <span class = "table-item-title">Spot Light Location</span>
+                                <div class = "spot-light-pos">
+                                    x :
+                                    <input class = "slider" id = "spot-light-x" type = "range" min = "-15" max = "15" step = "0.01" value = "0">
+                                    <span class = "slider-value" id = "text-spot-light-x"></span>
+                                </div>
+                                <div class = "spot-light-pos">
+                                    y :
+                                    <input class = "slider" id = "spot-light-y" type = "range" min = "-15" max = "15" step = "0.01" value = "1.5">
+                                    <span class = "slider-value" id = "text-spot-light-y"></span>
+                                </div>
+                                <div class = "spot-light-pos">
+                                    z :
+                                    <input class = "slider" id = "spot-light-z" type = "range" min = "-15" max = "15" step = "0.01" value = "3">
+                                    <span class = "slider-value" id = "text-spot-light-z"></span>
+                                </div>
+                            </div>
+                            <div class = "spot-light-rotate-control">
+                                <span class = "table-item-title">Spot Light Rotation</span>
+                                <div class = "spot-light-rotate">
+                                    x :
+                                    <input class = "slider" id = "spot-light-rotate-x" type = "range" min = "-20" max = "20" step = "0.01" value = "0">
+                                    <span class = "slider-value" id = "text-spot-light-rotate-x"></span>
+                                </div>
+                                <div class = "spot-light-rotate">
+                                    y :
+                                    <input class = "slider" id = "spot-light-rotate-y" type = "range" min = "-20" max = "20" step = "0.01" value = "0">
+                                    <span class = "slider-value" id = "text-spot-light-rotate-y"></span>
+                                </div>
+                            </div>
+                            <ul class = "colour-setting light-colour-attrib">
+                                <span class = "table-item-title">Spot Light Attribute</span>
+                                <li>
+                                    <div class = "color-picker-setting">
+                                        <span>Ambient Colour</span>
+                                        <input class = "color-picker" id = "spot-light-ambient-color" type = "color" value = "#cccccc">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class = "color-picker-setting">
+                                        <span>Diffuse Colour</span>
+                                        <input class = "color-picker" id = "spot-light-diffuse-color" type = "color" value = "#ffffff">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class = "color-picker-setting">
+                                        <span>Specular Colour</span>
+                                        <input class = "color-picker" id = "spot-light-specular-color" type = "color" value = "#ffffff">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr class = "object-modify-layout" id = "cube-attrib">
+                    <td class = "table-item">
+                        <ul class = "colour-setting">
+                            <span class = "table-item-title">Cube Attribute</span>
+                            <li class = "material-attrib">
+                                <div class = "shininess">
+                                    Shininess:
+                                    <input class = "slider" id = "shininess[1]" type = "range" min = "1" max = "150" step = "1" value = "100">
+                                    <span class = "slider-value" id = "text-shininess[1]">100</span>
+                                </div>
+                            </li>
+                            <li class = "material-attrib">
+                                <div class = "material-colour-reflection-setting">
+                                    Ambient Reflection (Ka):
+                                    <input class = "slider" id = "ambient-Ka[1]" type = "range" min = "0" max = "1" step = "0.01" value = "1">
+                                    <span class = "slider-value" id = "text-Ka[1]">1</span>
+                                </div>
+                                <div class = "color-picker-setting">
+                                    <span>Ambient Colour</span>
+                                    <input class = "color-picker" id = "obj-ambient-color[1]" type = "color" value = "#000000">
+                                </div>
+                            </li>
+                            <li class = "material-attrib">
+                                <div class = "material-colour-reflection-setting">
+                                    Diffuse Reflection (Kd):
+                                    <input class = "slider" id = "diffuse-Kd[1]" type = "range" min = "0" max = "1" step = "0.01" value = "1">
+                                    <span class = "slider-value" id = "text-Kd[1]">1</span>
+                                </div>
+                                <div class = "color-picker-setting">
+                                    <span>Diffuse Colour</span>
+                                    <input class = "color-picker" id = "obj-diffuse-color[1]" type = "color" value = "#33cccc">
+                                </div>
+                            </li>
+                            <li class = "material-attrib">
+                                <div class = "material-colour-reflection-setting">
+                                    Specular Reflection (Ks):
+                                    <input class = "slider" id = "specular-Ks[1]" type = "range" min = "0" max = "1" step = "0.01" value = "1">
+                                    <span class = "slider-value" id = "text-Ks[1]">1</span>
+                                </div>
+                                <div class = "color-picker-setting">
+                                    <span>Specular Colour</span>
+                                    <input class = "color-picker" id = "obj-specular-color[1]" type = "color" value = "#ffffff">
+                                </div>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class = "object-modify-layout" id = "cylinder-attrib" hidden>
+                    <td class = "table-item">
+                        <ul class = "colour-setting">
+                            <span class = "table-item-title">Cylinder Attribute</span>
+                            <li class = "material-attrib">
+                                <div class = "shininess">
+                                    Shininess:
+                                    <input class = "slider" id = "shininess[2]" type = "range" min = "1" max = "150" step = "1" value = "100">
+                                    <span class = "slider-value" id = "text-shininess[2]">100</span>
+                                </div>
+                            </li>
+                            <li class = "material-attrib">
+                                <div class = "material-colour-reflection-setting">
+                                    Ambient Reflection (Ka):
+                                    <input class = "slider" id = "ambient-Ka[2]" type = "range" min = "0" max = "1" step = "0.01" value = "1">
+                                    <span class = "slider-value" id = "text-Ka[2]">1</span>
+                                </div>
+                                <div class = "color-picker-setting">
+                                    <span>Ambient Colour</span>
+                                    <input class = "color-picker" id = "obj-ambient-color[2]" type = "color" value = "#000000">
+                                </div>
+                            </li>
+                            <li class = "material-attrib">
+                                <div class = "material-colour-reflection-setting">
+                                    Diffuse Reflection (Kd):
+                                    <input class = "slider" id = "diffuse-Kd[2]" type = "range" min = "0" max = "1" step = "0.01" value = "1">
+                                    <span class = "slider-value" id = "text-Kd[2]">1</span>
+                                </div>
+                                <div class = "color-picker-setting">
+                                    <span>Diffuse Colour</span>
+                                    <input class = "color-picker" id = "obj-diffuse-color[2]" type = "color" value = "#00ff00">
+                                </div>
+                            </li>
+                            <li class = "material-attrib">
+                                <div class = "material-colour-reflection-setting">
+                                    Specular Reflection (Ks):
+                                    <input class = "slider" id = "specular-Ks[2]" type = "range" min = "0" max = "1" step = "0.01" value = "1">
+                                    <span class = "slider-value" id = "text-Ks[2]">1</span>
+                                </div>
+                                <div class = "color-picker-setting">
+                                    <span>Specular Colour</span>
+                                    <input class = "color-picker" id = "obj-specular-color[2]" type = "color" value = "#ffffff">
+                                </div>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class = "object-modify-layout" id = "sphere-attrib" hidden>
+                    <td class = "table-item">
+                        <ul class = "colour-setting">
+                            <span class = "table-item-title">Sphere Attribute</span>
+                            <li class = "material-attrib">
+                                <div class = "shininess">
+                                    Shininess:
+                                    <input class = "slider" id = "shininess[3]" type = "range" min = "1" max = "150" step = "1" value = "100">
+                                    <span class = "slider-value" id = "text-shininess[3]">100</span>
+                                </div>
+                            </li>
+                            <li class = "material-attrib">
+                                <div class = "material-colour-reflection-setting">
+                                    Ambient Reflection (Ka):
+                                    <input class = "slider" id = "ambient-Ka[3]" type = "range" min = "0" max = "1" step = "0.01" value = "1">
+                                    <span class = "slider-value" id = "text-Ka[3]">1</span>
+                                </div>
+                                <div class = "color-picker-setting">
+                                    <span>Ambient Colour</span>
+                                    <input class = "color-picker" id = "obj-ambient-color[3]" type = "color" value = "#000000">
+                                </div>
+                            </li>
+                            <li class = "material-attrib">
+                                <div class = "material-colour-reflection-setting">
+                                    Diffuse Reflection (Kd):
+                                    <input class = "slider" id = "diffuse-Kd[3]" type = "range" min = "0" max = "1" step = "0.01" value = "1">
+                                    <span class = "slider-value" id = "text-Kd[3]">1</span>
+                                </div>
+                                <div class = "color-picker-setting">
+                                    <span>Diffuse Colour</span>
+                                    <input class = "color-picker" id = "obj-diffuse-color[3]" type = "color" value = "#ccff00">
+                                </div>
+                            </li>
+                            <li class = "material-attrib">
+                                <div class = "material-colour-reflection-setting">
+                                    Specular Reflection (Ks):
+                                    <input class = "slider" id = "specular-Ks[3]" type = "range" min = "0" max = "1" step = "0.01" value = "1">
+                                    <span class = "slider-value" id = "text-Ks[3]">1</span>
+                                </div>
+                                <div class = "color-picker-setting">
+                                    <span>Specular Colour</span>
+                                    <input class = "color-picker" id = "obj-specular-color[3]" type = "color" value = "#ffffff">
+                                </div>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class = "object-modify-layout" id = "pentagonal-prism-attrib" hidden>
+                    <td class = "table-item">
+                        <ul class = "colour-setting">
+                            <span class = "table-item-title">Pentagonal Prism Attribute</span>
+                            <li class = "material-attrib">
+                                <div class = "shininess">
+                                    Shininess:
+                                    <input class = "slider" id = "shininess[4]" type = "range" min = "1" max = "150" step = "1" value = "100">
+                                    <span class = "slider-value" id = "text-shininess[4]">100</span>
+                                </div>
+                            </li>
+                            <li class = "material-attrib">
+                                <div class = "material-colour-reflection-setting">
+                                    Ambient Reflection (Ka):
+                                    <input class = "slider" id = "ambient-Ka[4]" type = "range" min = "0" max = "1" step = "0.01" value = "1">
+                                    <span class = "slider-value" id = "text-Ka[4]">1</span>
+                                </div>
+                                <div class = "color-picker-setting">
+                                    <span>Ambient Colour</span>
+                                    <input class = "color-picker" id = "obj-ambient-color[4]" type = "color" value = "#000000">
+                                </div>
+                            </li>
+                            <li class = "material-attrib">
+                                <div class = "material-colour-reflection-setting">
+                                    Diffuse Reflection (Kd):
+                                    <input class = "slider" id = "diffuse-Kd[4]" type = "range" min = "0" max = "1" step = "0.01" value = "1">
+                                    <span class = "slider-value" id = "text-Kd[4]">1</span>
+                                </div>
+                                <div class = "color-picker-setting">
+                                    <span>Diffuse Colour</span>
+                                    <input class = "color-picker" id = "obj-diffuse-color[4]" type = "color" value = "#ff0000">
+                                </div>
+                            </li>
+                            <li class = "material-attrib">
+                                <div class = "material-colour-reflection-setting">
+                                    Specular Reflection (Ks):
+                                    <input class = "slider" id = "specular-Ks[4]" type = "range" min = "0" max = "1" step = "0.01" value = "1">
+                                    <span class = "slider-value" id = "text-Ks[4]">1</span>
+                                </div>
+                                <div class = "color-picker-setting">
+                                    <span>Specular Colour</span>
+                                    <input class = "color-picker" id = "obj-specular-color[4]" type = "color" value = "#ffffff">
+                                </div>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class = "object-modify-layout" id = "teapot-attrib" hidden>
+                    <td class = "table-item">
+                        <ul class = "colour-setting">
+                            <span class = "table-item-title">Teapot Attribute</span>
+                            <li class = "material-attrib">
+                                <div class = "shininess">
+                                    Shininess:
+                                    <input class = "slider" id = "shininess[5]" type = "range" min = "1" max = "150" step = "1" value = "100">
+                                    <span class = "slider-value" id = "text-shininess[5]">100</span>
+                                </div>
+                            </li>
+                            <li class = "material-attrib">
+                                <div class = "material-colour-reflection-setting">
+                                    Ambient Reflection (Ka):
+                                    <input class = "slider" id = "ambient-Ka[5]" type = "range" min = "0" max = "1" step = "0.01" value = "1">
+                                    <span class = "slider-value" id = "text-Ka[5]">1</span>
+                                </div>
+                                <div class = "color-picker-setting">
+                                    <span>Ambient Colour</span>
+                                    <input class = "color-picker" id = "obj-ambient-color[5]" type = "color" value = "#000000">
+                                </div>
+                            </li>
+                            <li class = "material-attrib">
+                                <div class = "material-colour-reflection-setting">
+                                    Diffuse Reflection (Kd):
+                                    <input class = "slider" id = "diffuse-Kd[5]" type = "range" min = "0" max = "1" step = "0.01" value = "1">
+                                    <span class = "slider-value" id = "text-Kd[5]">1</span>
+                                </div>
+                                <div class = "color-picker-setting">
+                                    <span>Diffuse Colour</span>
+                                    <input class = "color-picker" id = "obj-diffuse-color[5]" type = "color" value = "#0000ff">
+                                </div>
+                            </li>
+                            <li class = "material-attrib">
+                                <div class = "material-colour-reflection-setting">
+                                    Specular Reflection (Ks):
+                                    <input class = "slider" id = "specular-Ks[5]" type = "range" min = "0" max = "1" step = "0.01" value = "1">
+                                    <span class = "slider-value" id = "text-Ks[5]">1</span>
+                                </div>
+                                <div class = "color-picker-setting">
+                                    <span>Specular Colour</span>
+                                    <input class = "color-picker" id = "obj-specular-color[5]" type = "color" value = "#ffffff">
+                                </div>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        
+        <!-- A canvas that is used to display the image and animation. -->
+        <div class = "canvas-container">
+
+            <canvas id = "gl-canvas" width = "830" height = "655">
+                Oops ... your browser doesn't support the HTML5 canvas element.
+            </canvas>
+
+            <div class = "canvas-shading-control">
+
+                <div class = "select-shading-type">
+                    <select class = "shading-type-list" id = "shading-type">
+                        <option value = "1">Gouraud Shading</option>
+                        <option value = "2" selected>Phong Shading</option>
+                        <option value = "3">Flat Shading</option>
+                    </select>
+                </div>
+    
+                <div class = "select-input">
+                    <select class = "light-type-list" id = "light-type">
+                        <option value = "1">Point Light</option>
+                        <option value = "0" selected>Distance Light</option>
+                    </select>
+                </div>
+    
+                <div class = "light-turn-on-off">
+                    <div class = "point-dist-light-turn-on-off">
+                        Point / Distance Light
+                        <label class = "switch">
+                            <input class = "toggle" id = "point-dist-light" type = "checkbox" checked>
+                            <span class = "slider slider-toggle"></span>
+                        </label>
+                    </div>
+        
+                    <div class = "spot-light-turn-on-off">
+                        Spot Light
+                        <label class = "switch">
+                            <input class = "toggle" id = "spot-light" type = "checkbox" checked>
+                            <span class = "slider slider-toggle"></span>
+                        </label>
+                    </div>
+                </div>
+    
+                <div class = "texture-type-list-section">
+                    <label for = "texture-type">Floor Texture:</label>
+                    <div class = "select-floor-texture">
+                        <select class = "texture-type-list" id = "texture-type">
+                            <option value = "0" selected>None</option>
+
+                            <optgroup label = "Nature"></optgroup>
+                            <option value = "1">Grass</option>
+                            <option value = "2">Ocean</option>
+                            <option value = "3">Sand</option>
+                            <option value = "4">Snow</option>
+                            <option value = "5">Moon</option>
+                            <option value = "6">Soil</option>
+                            <option value = "7">Cracked Ground</option>
+
+                            <optgroup label = "Material"></optgroup>
+                            <option value = "8">Paper</option>
+                            <option value = "9">Wooden Board</option>
+                            <option value = "10">Brick</option>
+                            <option value = "11">Silver</option>
+                            <option value = "12">Gold</option>
+                            <option value = "13">Concrete</option>
+
+                            <optgroup label = "Logo"></optgroup>
+                            <option value = "20">USM Logo</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    
+    <!-- Footer. -->
+    <footer class = "footer">
+        <div class = "footer-copyright">
+            <span>
+                © 2023 Copyright Lim Jie Yi, Yeow Kok Guan & Li Jun Tong
+            </span>
+        </div>
+    </footer>
+
+</body>
+</html>
