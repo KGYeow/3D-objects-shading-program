@@ -81,6 +81,8 @@ body
 */
 .page
 {
+    display          : flex;
+    flex-direction   : row;
     background-image : url("../imgs/background.png");
     background-size  : cover;
     background-repeat: no-repeat;
@@ -91,6 +93,8 @@ body
     overflow         : hidden;
     z-index          : -1;
 }
+
+
 /********************************************************************/
 
 /********************************************************************/
@@ -100,9 +104,8 @@ body
 */
 .canvas-container
 {
-    position    : absolute;
-    top         : 60px;
-    right       : 15px;
+    margin      : auto;
+    margin-top  : -30px;
     animation   : appear-layout 0.3s linear;
 }
 
@@ -110,6 +113,8 @@ body
 #gl-canvas
 {
     border    : 5px solid #023e8a;
+    height    : 100%;
+    width     : 99%;
     box-shadow: 0px 2px 5px  0px rgba(0, 0, 0, 0.3),
                 0px 2px 2px -1px rgba(0, 0, 0, 0.15);
 }
@@ -117,11 +122,9 @@ body
 .canvas-shading-control
 {
     display         : flex;
-    justify-content: center;
-    position        : absolute;
-    margin          : auto;
-    width           : 835px;
-    top             : 5px;
+    position        : relative;
+    justify-content : center;
+    top             : 45px;
 }
 
 .shading-type-list,

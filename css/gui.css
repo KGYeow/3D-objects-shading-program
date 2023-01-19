@@ -31,32 +31,32 @@
 
     This section set up the table setting layout for shading control.
 */
+.shading-control-container
+{
+    margin      : auto;
+    margin-top  : 10px;
+    height      : 90%;
+}
+
+.table-container
+{
+    position: relative;
+    height      : 100%;
+    font-family :'Segoe UI';
+    font-size   : smaller;
+    overflow-y  : scroll;
+}
+
 .table-header
 {
+    position        : relative;
     color           : white;
-    position        : absolute;
-    padding         : 5px;
-    width           : 620px;
-    top             : 15px;
-    left            : 15px;
+    padding-bottom  : 5px;
     font-family     :'Segoe UI';
     font-size       : xx-large;
     font-weight     : bold;
     text-align      : center;
     text-shadow     : 2px 2px 5px black;
-}
-
-.table-container
-{
-    position    : absolute;
-    margin      : 0;
-    padding     : 0;
-    height      : 655px;
-    top         : 70px;
-    left        : 15px;
-    font-family :'Segoe UI';
-    font-size   : smaller;
-    overflow-y  : scroll;
 }
 
 .table-setting
